@@ -41,3 +41,34 @@ WHERE `ospite_id`;
 ●    Quanti posti letto ha l’hotel in totale?
 SELECT SUM(`beds`)
 FROM `stanze`;
+
+
+
+Group by
+
+●    Conta gli ospiti raggruppandoli per anno di nascita
+SELECT YEAR(`date_of_birth`) AS birth_year, COUNT(*) AS number_of_guests
+FROM `ospiti`
+GROUP BY birth_year;
+
+●    Somma i prezzi dei pagamenti raggruppandoli per status
+SELECT `status`, SUM(`price`) AS sum
+FROM `pagamenti`
+GROUP BY `status`;
+
+●    Conta quante volte è stata prenotata ogni stanza
+SELECT `stanza_id`, COUNT(*) AS times_booked
+FROM `prenotazioni`
+GROUP BY `stanza_id`;
+
+●    Fai una analisi per vedere se ci sono ore in cui le prenotazioni sono più frequenti
+SELECT HOUR(`created_at`) AS hour, COUNT(*) AS times_booked
+FROM `prenotazioni`
+GROUP BY hour;
+
+●    Quante prenotazioni ha fatto l’ospite che ha fatto più prenotazioni?
+SELECT `ospite_id`, COUNT(*) AS bookings
+FROM `prenotazioni_has_ospiti`
+GROUP BY `ospite_id`
+ORDER BY bookings DESC
+LIMIT 1;
