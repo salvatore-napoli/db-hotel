@@ -32,3 +32,15 @@ WHERE `date_of_birth` BETWEEN DATE_ADD(DATE_SUB(CURRENT_DATE (), INTERVAL 30 YEA
 SELECT *
 FROM `prenotazioni`
 WHERE `created_at` < '2018-05-01';
+
+●    Selezionare i paganti e i relativi dati ospite
+SELECT *
+FROM `paganti`
+LEFT JOIN `ospiti`
+ON paganti.ospite_id = ospiti.id;
+
+●    Selezionare tutti i pagamenti con i dati relativi alla prenotazione
+SELECT *
+FROM `pagamenti`
+INNER JOIN `prenotazioni`
+ON pagamenti.prenotazione_id = prenotazioni.id;
