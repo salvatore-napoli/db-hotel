@@ -83,8 +83,7 @@ FROM `prenotazioni_has_ospiti`
 JOIN `ospiti`
 ON `ospite_id` = ospiti.id
 GROUP BY `ospite_id`
-ORDER BY bookings DESC
-LIMIT 2;
+HAVING bookings > 2;
 
 ●    Stampare tutti gli ospiti per ogni prenotazione
 SELECT *
